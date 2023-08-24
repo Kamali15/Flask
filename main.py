@@ -7,14 +7,16 @@ db = con['flaskproject']
 col = db['flask']
 
 @app.route('/')
-def home():
-    return render_template("home.html")
+def register():
+    return render_template("stud_detail.html")
 
 @app.route('/welcome',methods=['GET','POST'])
 def welcome():
     name1 = request.form.get('fname')
     name2 = request.form.get('lname')
-    col.insert_one({'fname':name1,'lname':name2})
+    email = request.form.get('email')
+    phno = request.form.get('phno')
+    col.insert_one({'fname': name1, 'lname': name2, 'email': email, 'phno': phno})
     return render_template("welcome.html")
 
 app.run()
